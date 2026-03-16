@@ -88,7 +88,8 @@ AddressBookChallenge
    dotnet run
 
 3. Open Swagger UI : 
-   https://localhost:<port>/swagger
+   ```
+   https://localhost:5062/swagger
 
 4. Verify the API is running : 
    GET /

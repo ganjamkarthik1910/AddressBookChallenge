@@ -82,47 +82,61 @@ AddressBookChallenge
 # API Execution Flow
 
 1. Start the application
-   - dotnet restore
-   - dotnet build
-   - dotnet run
+   ```bash
+   dotnet restore
+   dotnet build
+   dotnet run
 
-2. Open Swagger UI:
+3. Open Swagger UI : 
    https://localhost:<port>/swagger
 
-3. Verify the API is running
+4. Verify the API is running : 
    GET /
 
-4. Generate a development token
+5. Generate a development token : 
    GET /dev/token/user1
 
-5. Copy the returned JWT token
+6. Copy the returned JWT token
 
-6. Click "Authorize" in Swagger
+7. Click "Authorize" in Swagger
 
-7. Paste the token as:
+8. Paste the token as : 
    Bearer <token>
 
-8. Create an address
+9. Create an address : 
    POST /api/addresses
 
-9. Retrieve all addresses for the authenticated user
+10. Retrieve all addresses for the authenticated user : 
    GET /api/addresses
 
-10. Retrieve a specific address using its generated id
+11. Retrieve a specific address using its generated id : 
     GET /api/addresses/{id}
 
-11. Update an existing address
+12. Update an existing address : 
     PUT /api/addresses/{id}
 
-12. Delete an address
+13. Delete an address : 
     DELETE /api/addresses/{id}
 
-13. Test user isolation
+14. Test user isolation : 
     - Generate another token:
       GET /dev/token/user2
     - Authorize with the new token
     - Call:
       GET /api/addresses
     - Verify that user2 cannot see user1’s addresses
+
+# Local Unit Test using Xunit Framework:
+The solution includes unit tests to validate key business rules.
+
+Test 1 – CreateAsync_ShouldCreateAddress
+Verifies that creating an address stores it successfully, generates a unique address ID, and associates it with the correct authenticated user.
+
+Test 2 – GetAsync_ShouldNotReturnOtherUsersAddress
+Verifies that a user cannot retrieve an address belonging to another user, ensuring proper user-scoped access control.
+
+Test Run:
+ ```bash
+dotnet test Tests
 
 
